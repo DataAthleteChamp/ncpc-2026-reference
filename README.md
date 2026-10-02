@@ -154,6 +154,39 @@ Derived from the NCPC 2021–2025 archives (see [`SOURCES.md`](SOURCES.md)):
 - The live scoreboard is a free difficulty oracle: with 230+ teams, the easy
   problems light up within 15–20 minutes.
 
+## For a teammate cloning this
+
+```bash
+git clone https://github.com/DataAthleteChamp/ncpc-2026-reference
+cd ncpc-2026-reference
+make check-toolchain      # expect g++-15 15.2.0
+./run                     # should print 6
+```
+
+Everything needed to work is already in the clone, including the printable
+reference at [`print/team-reference.pdf`](print/team-reference.pdf) — no
+LaTeX install required to read or print it.
+
+Two things are **deliberately not in the repo**, and both are one command or
+one rule away:
+
+| Not committed | Why | How to get it |
+|---|---|---|
+| `reference/**` — KACTL, CSES, OI books, T-Olimpians | Third-party, all-rights-reserved or unclear licence. Redistributing them would be infringement. | `make refs` |
+| `books/` | Personally purchased textbooks. | Keep your own copies locally. |
+
+Sharing a solution with the team? Put it in
+[`solutions/`](solutions/README.md), which is tracked. The scratch files in
+the repo root (`a.cpp` … `k.cpp`) stay local on purpose: during a contest you
+are on one shared machine, so they never need to travel, and keeping them
+untracked avoids merge conflicts mid-contest.
+
+If you have macOS without Homebrew GCC:
+
+```bash
+brew install gcc          # provides g++-15, the exact judge compiler
+```
+
 ## Licensing and attribution
 
 MIT-licensed. All code and prose here is original work.

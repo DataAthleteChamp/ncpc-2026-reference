@@ -349,7 +349,16 @@ def main() -> int:
         return 1
 
     pdf = BUILD / "team-reference.pdf"
+
+    # Also publish a copy at a stable, tracked path. The PDF is entirely our
+    # own MIT-licensed content, and a teammate would otherwise need a ~5 GB
+    # LaTeX install just to read the thing they are supposed to print.
+    published = ROOT / "print" / "team-reference.pdf"
+    published.parent.mkdir(exist_ok=True)
+    shutil.copyfile(pdf, published)
+
     print(f"\n-> {pdf.relative_to(ROOT)} ({pdf.stat().st_size // 1024} KB)")
+    print(f"-> {published.relative_to(ROOT)} (committed copy)")
     return 0
 
 

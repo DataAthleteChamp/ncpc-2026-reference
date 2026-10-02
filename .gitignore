@@ -20,7 +20,10 @@ reference/pl/*
 # Contest scratch — solutions are written in the repo root during a contest
 # ---------------------------------------------------------------------------
 # sol.cpp, in.txt and run are TRACKED: they are the ready-to-use workspace.
-# Everything below is per-contest working state.
+# Root-level a.cpp..l.cpp are per-contest working state and stay local --
+# during a contest you are on one shared machine anyway (ICPC rules).
+#
+# To SHARE a solution with the team, move it to solutions/, which is tracked.
 /[a-l].cpp
 /[a-l]_brut.cpp
 /[a-l]
@@ -46,9 +49,18 @@ reference/pl/*
 /stress.got
 /stress.exp
 
+# Binaries inside solutions/ (the sources there are tracked).
+solutions/**/*.bin
+solutions/**/*.out
+solutions/**/*.dbg
+
 # ---------------------------------------------------------------------------
 # Build artifacts
 # ---------------------------------------------------------------------------
+# LaTeX intermediates live in build/. The finished PDF is published to
+# print/team-reference.pdf, which IS tracked: it is entirely our own
+# MIT-licensed content, and a teammate should not need a ~5 GB LaTeX install
+# to read the document they are meant to print.
 build/
 *.o
 a.out
