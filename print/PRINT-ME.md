@@ -1,0 +1,101 @@
+# What to print
+
+**Decided for you.** Four documents, ~62 pages. Print exactly these.
+
+Run this first:
+
+```bash
+make refs      # downloads the third-party references
+make print     # regenerates print/cockpit.pdf and print/team-reference.pdf
+```
+
+---
+
+## 1. Cockpit — `print/cockpit.pdf` — 2 pages ⭐
+
+**Print 2 copies, single-sided, one for each of you.** This is the only
+document you will touch every few minutes.
+
+| Page | Contents |
+|---|---|
+| Front | The template to type · complexity budget · reading constraints backwards · overflow · TLE causes · STL · **problem shape → technique** · core snippets |
+| Back | WA/TLE/RTE triage · pre-submit checklist · two-person roles · hour-by-hour plan · reality check |
+
+Two copies matters: when a submission fails, the reader works the checklist
+aloud while the coder re-reads the statement. That needs two sheets.
+
+## 2. Team reference — `print/team-reference.pdf` — 26 pages
+
+**Print once, double-sided, staple or bind.** Your algorithms, each tested,
+each with its traps written next to it.
+
+DSU · Fenwick · segment tree · BFS/DFS/grid · Dijkstra · toposort · cycle
+detection · bipartite · Floyd–Warshall · Kruskal · DP (knapsack, coin change,
+LIS, LCS, edit distance, Kadane) · number theory · KMP/Z/hashing · geometry ·
+binary search · prefix sums
+
+Also contains the full checklists and the contest-legality procedure.
+
+## 3. KACTL — `reference/en/kactl.pdf` — 26 pages
+
+**Print once, double-sided.** KTH's team reference, the standard ICPC
+notebook. Insurance for the harder problems.
+
+Mind the gap: KACTL deliberately omits **Dijkstra, plain Union-Find and
+BFS/DFS** — its README says it excludes "algorithms that are very
+common/simple". Document 2 covers exactly those.
+
+## 4. T-Olimpians STL sheet — 8 pages
+
+`sciaga-struktury-danych-cpp-t-olimpians.pdf` — your own copy, in your
+Downloads folder. Polish, and the densest page-for-page thing you own: every
+STL container with methods, complexities, and a *pułapka konkursowa* (contest
+trap) note each.
+
+**Print once.** Not fetchable by script — it is proprietary.
+
+---
+
+## Total
+
+| Document | Pages | Copies | Sheets (duplex) |
+|---|---|---|---|
+| Cockpit | 2 | **2** | 4 |
+| Team reference | 26 | 1 | 13 |
+| KACTL | 26 | 1 | 13 |
+| T-Olimpians STL | 8 | 1 | 4 |
+| | | | **~34 sheets** |
+
+One ring binder with tab dividers, or a stapled booklet plus two loose
+cockpit sheets. Tab the team reference by section — flipping blindly through
+26 pages under time pressure wastes the advantage of having it.
+
+---
+
+## Deliberately NOT printed
+
+NCPC sets **no page limit**, so this is not about saving paper — it is about
+being able to find things. A reference you cannot navigate is worthless.
+
+| Skipped | Why |
+|---|---|
+| CSES Handbook (296 pp) | A textbook, not a flip-reference. Read it tonight; print nothing. |
+| *W poszukiwaniu wyzwań 2* (212 pp) | Polish contest problems + solutions. Great practice, wrong format for the contest floor. |
+| OI "niebieska książeczka" (252 pp) | Task editorials only, no theory chapters. |
+| Stanford notebook (20 pp) | Same advanced tier as KACTL, largely redundant. |
+| SuprDewd `comprog.pdf` (27 pp) | Same. |
+
+If you want more insurance anyway, add Stanford and SuprDewd — 47 extra pages
+costs you nothing but bulk.
+
+---
+
+## After printing
+
+```bash
+make contest-ready
+```
+
+Removes `templates/`, `reference/`, `books/`, `.git` and `sol.cpp` from the
+laptop. Printed is allowed without limit; the digital copies are banned. See
+[`../checklists/contest-legal.md`](../checklists/contest-legal.md).

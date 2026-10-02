@@ -41,7 +41,7 @@ P ?= a
 N ?= 200
 TEMPLATE := templates/cpp/solution.cpp
 
-.PHONY: help new run test debug stress brut submit strict selftest print refs clean check-toolchain contest-ready contest-check
+.PHONY: help new run test debug stress brut submit strict selftest print refs clean check-toolchain contest-ready contest-check prep
 
 help:
 	@echo "make new P=a      create a.cpp from the template"
@@ -52,7 +52,8 @@ help:
 	@echo "make stress P=a   random tests vs a_brut.cpp (N=200 by default)"
 	@echo "make submit P=a   pre-submit checks"
 	@echo "make selftest     run every template's built-in tests"
-	@echo "make print        build the printable team reference"
+	@echo "make print        build cockpit.pdf + team-reference.pdf"
+	@echo "make prep         fetch refs AND build both PDFs"
 	@echo ""
 	@echo "make contest-check  dry run: what must leave the laptop"
 	@echo "make contest-ready  remove all prewritten code before the contest"
@@ -165,7 +166,15 @@ selftest:
 	done
 
 print:
+	@python3 scripts/build-cockpit.py
 	@python3 scripts/build-print-pdf.py
+	@echo ""
+	@echo "What to print, and how many copies: print/PRINT-ME.md"
+
+# One command for tonight: fetch references, build both PDFs, list the plan.
+prep: refs print
+	@echo ""
+	@cat print/PRINT-ME.md | sed -n '1,12p'
 
 refs:
 	@./scripts/fetch-references.sh
