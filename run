@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# ./run            build sol.cpp, feed it in.txt, print the answer
+# ./run b          same for b.cpp / b.in
+#
+# That is the whole workflow. Edit sol.cpp, paste the sample into in.txt,
+# run this.
+set -uo pipefail
+cd "$(dirname "$0")"
+
+P="${1:-sol}"
+SRC="$P.cpp"
+IN="in.txt"
+[ "$P" != "sol" ] && IN="$P.in"
+
+[ -f "$SRC" ] || { echo "no $SRC here"; exit 1; }
+
+CXX=/opt/homebrew/bin/g++-15
+[ -x "$CXX" ] || CXX=g++
+
+# -DLOCAL turns on dbg(); the judge build never defines it.
+if ! $CXX -g -O2 -std=gnu++23 -Wall -Wextra -DLOCAL -o "$P.bin" "$SRC"; then
+    echo "--- compile failed ---"
+    exit 1
+fi
+
+if [ -f "$IN" ]; then
+    echo "--- input ($IN) ---"
+    cat "$IN"
+    # dbg() goes to stderr, the answer to stdout. Keep them apart so you can
+    # see at a glance what the judge would actually receive.
+    echo "--- debug (stderr) ---"
+    ./"$P.bin" < "$IN" > out.txt 2> err.txt
+    code=$?
+    cat err.txt
+    echo "--- answer (stdout -> out.txt) ---"
+    cat out.txt
+    [ $code -ne 0 ] && echo "--- CRASHED, exit $code ---"
+    exit 0
+else
+    echo "--- no $IN, type input then press Ctrl-D ---"
+    ./"$P.bin"
+fi

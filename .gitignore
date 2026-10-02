@@ -19,11 +19,12 @@ reference/pl/*
 # ---------------------------------------------------------------------------
 # Contest scratch — solutions are written in the repo root during a contest
 # ---------------------------------------------------------------------------
-# One file per problem (a.cpp, b.cpp, ...) plus their samples and binaries.
-# Keep the repo clean; these are per-contest working files.
+# sol.cpp, in.txt and run are TRACKED: they are the ready-to-use workspace.
+# Everything below is per-contest working state.
 /[a-l].cpp
 /[a-l]_brut.cpp
 /[a-l]
+/[a-l].bin
 /[a-l].dbg
 /[a-l].judge
 /[a-l]_brut
@@ -31,9 +32,16 @@ reference/pl/*
 /[a-l].*.ans
 /[a-l].in
 /[a-l].out
+/sol.bin
+/sol.dbg
+/sol.judge
+/sol_brut.cpp
+/sol_brut
+/sol.*.in
+/sol.*.ans
 /gen.py
-/in.txt
 /out.txt
+/err.txt
 /stress.in
 /stress.got
 /stress.exp
@@ -42,10 +50,8 @@ reference/pl/*
 # Build artifacts
 # ---------------------------------------------------------------------------
 build/
-*.out
 *.o
 a.out
-sol
 *.dSYM/
 __pycache__/
 

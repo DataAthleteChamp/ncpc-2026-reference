@@ -68,8 +68,11 @@ run: $(P)
 	@if [ -f $(P).in ]; then \
 	  echo "--- $(P).in -> $(P).out ---"; \
 	  ./$(P) < $(P).in > $(P).out && cat $(P).out; \
+	elif [ -f in.txt ]; then \
+	  echo "--- in.txt -> out.txt ---"; \
+	  ./$(P) < in.txt > out.txt && cat out.txt; \
 	else \
-	  echo "--- reading stdin (no $(P).in) ---"; ./$(P); \
+	  echo "--- reading stdin (no $(P).in or in.txt) ---"; ./$(P); \
 	fi
 
 test: $(P)
@@ -176,7 +179,7 @@ check-toolchain:
 	    && echo "ok" || echo "MISSING - wrong compiler?"
 
 clean:
-	@rm -f $(P) $(P).dbg $(P).judge $(P)_brut $(P).out
-	@rm -f stress.in stress.got stress.exp in.txt out.txt
+	@rm -f $(P) $(P).bin $(P).dbg $(P).judge $(P)_brut $(P).out
+	@rm -f out.txt err.txt stress.in stress.got stress.exp
 	@rm -rf *.dSYM build __pycache__ scripts/__pycache__
-	@echo "cleaned"
+	@echo "cleaned (sol.cpp and in.txt kept)"

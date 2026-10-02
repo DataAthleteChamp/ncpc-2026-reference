@@ -17,7 +17,12 @@ exactly so nothing surprises you on the day.
 
 ---
 
-## Quick start
+## Start here
+
+For the day-to-day loop, read **[START-HERE.md](START-HERE.md)** — three files:
+`sol.cpp`, `in.txt`, `./run`.
+
+## Setup
 
 ```bash
 make check-toolchain     # verify your compiler matches the judge
