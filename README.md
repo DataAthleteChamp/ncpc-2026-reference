@@ -1,4 +1,4 @@
-# ICPC Templates — NCPC 2026
+# NCPC 2026 — Team Reference
 
 A small, **tested** C++/Python template library and printable team reference,
 built for the [Nordic Collegiate Programming Contest](https://nordic.icpc.io/ncpc2026/)

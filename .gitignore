@@ -17,6 +17,28 @@ reference/pl/*
 !reference/pl/README.md
 
 # ---------------------------------------------------------------------------
+# Contest scratch — solutions are written in the repo root during a contest
+# ---------------------------------------------------------------------------
+# One file per problem (a.cpp, b.cpp, ...) plus their samples and binaries.
+# Keep the repo clean; these are per-contest working files.
+/[a-l].cpp
+/[a-l]_brut.cpp
+/[a-l]
+/[a-l].dbg
+/[a-l].judge
+/[a-l]_brut
+/[a-l].*.in
+/[a-l].*.ans
+/[a-l].in
+/[a-l].out
+/gen.py
+/in.txt
+/out.txt
+/stress.in
+/stress.got
+/stress.exp
+
+# ---------------------------------------------------------------------------
 # Build artifacts
 # ---------------------------------------------------------------------------
 build/
@@ -25,6 +47,7 @@ build/
 a.out
 sol
 *.dSYM/
+__pycache__/
 
 # LaTeX
 *.aux
