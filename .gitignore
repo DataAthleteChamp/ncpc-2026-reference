@@ -1,0 +1,39 @@
+# ---------------------------------------------------------------------------
+# Copyrighted material — NEVER commit.
+# ---------------------------------------------------------------------------
+# books/ holds personally purchased or licensed PDFs (textbooks, course notes).
+# They are indexed in reference/INDEX.md by title only; the files stay local.
+books/
+*.djvu
+*.epub
+
+# Third-party reference PDFs are fetched by scripts/fetch-references.sh at need.
+# They are redistributable only under their own licenses, so we link, not vendor.
+reference/**/*.pdf
+!reference/**/.gitkeep
+
+# ---------------------------------------------------------------------------
+# Build artifacts
+# ---------------------------------------------------------------------------
+build/
+*.out
+*.o
+a.out
+sol
+*.dSYM/
+
+# LaTeX
+*.aux
+*.log
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# ---------------------------------------------------------------------------
+# OS / editor
+# ---------------------------------------------------------------------------
+.DS_Store
+.vscode/
+.idea/
+*.swp
