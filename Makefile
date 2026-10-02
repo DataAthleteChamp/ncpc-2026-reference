@@ -41,12 +41,11 @@ P ?= a
 N ?= 200
 TEMPLATE := templates/cpp/solution.cpp
 
-.PHONY: help new run runf test debug stress brut submit strict selftest print refs clean check-toolchain
+.PHONY: help new run test debug stress brut submit strict selftest print refs clean check-toolchain contest-ready contest-check
 
 help:
 	@echo "make new P=a      create a.cpp from the template"
 	@echo "make run P=a      build and run (a.in -> a.out if a.in exists)"
-	@echo "make runf P=a     build and run in freopen mode (in.txt -> out.txt)"
 	@echo "make test P=a     diff against a.1.in/a.1.ans, a.2.in/a.2.ans, ..."
 	@echo "make debug P=a    sanitized build, finds out-of-bounds"
 	@echo "make brut P=a     scaffold a_brut.cpp + gen.py for stress testing"
@@ -54,6 +53,9 @@ help:
 	@echo "make submit P=a   pre-submit checks"
 	@echo "make selftest     run every template's built-in tests"
 	@echo "make print        build the printable team reference"
+	@echo ""
+	@echo "make contest-check  dry run: what must leave the laptop"
+	@echo "make contest-ready  remove all prewritten code before the contest"
 
 new:
 	@if [ -e $(P).cpp ]; then \
@@ -183,3 +185,44 @@ clean:
 	@rm -f out.txt err.txt stress.in stress.got stress.exp
 	@rm -rf *.dSYM build __pycache__ scripts/__pycache__
 	@echo "cleaned (sol.cpp and in.txt kept)"
+
+# ---------------------------------------------------------------------------
+# Contest compliance
+# ---------------------------------------------------------------------------
+# NCPC 2026 rules (2026-09-28):
+#   BANNED  "Any local digital databases of pre-written code ... old
+#            solutions, PDFs of textbooks, copies of webpages"
+#   ALLOWED "Physical material has no restrictions: team reference documents,
+#            printed code, textbooks ... There is no limit"
+#
+# So: the paper is legal and unlimited; the files on the laptop are not.
+# Run this BEFORE you leave for the venue.
+contest-ready:
+	@echo "This deletes every prewritten-code file on this machine,"
+	@echo "including .git -- the history contains the same templates."
+	@echo ""
+	@echo "Before you continue:"
+	@echo "  1. print/team-reference.pdf must already be PRINTED"
+	@echo "  2. everything is recoverable afterwards with:"
+	@echo "     git clone https://github.com/DataAthleteChamp/ncpc-2026-reference"
+	@echo ""
+	@echo "Continue? [y/N]"
+	@read ans; [ "$$ans" = "y" ] || { echo "aborted"; exit 1; }
+	@rm -rf templates reference books solutions practice scripts
+	@rm -rf build print checklists .git .vscode
+	@rm -f Makefile README.md START-HERE.md SOURCES.md LICENSE sol.cpp run
+	@rm -f $(P) $(P).bin $(P).dbg $(P).judge out.txt err.txt in.txt
+	@echo ""
+	@echo "Done. No prewritten code remains on this machine."
+	@echo "Type your template from the printed copy at the start of the contest."
+
+# Dry run: show exactly what contest-ready would delete.
+contest-check:
+	@echo "Files that would be REMOVED (prewritten code / references):"
+	@for d in templates reference books solutions practice scripts build print checklists; do \
+	  [ -e $$d ] && echo "  $$d/"; done; true
+	@for f in Makefile README.md START-HERE.md SOURCES.md sol.cpp run; do \
+	  [ -e $$f ] && echo "  $$f"; done; true
+	@echo ""
+	@echo "Still allowed on the machine: compiler, editor, browser."
+	@echo "Still allowed on paper: everything, without limit."

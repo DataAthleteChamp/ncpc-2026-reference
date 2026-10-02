@@ -1,5 +1,9 @@
 # START HERE
 
+> **Saturday:** print the reference, then run `make contest-ready` to remove
+> this repo from the laptop. Prewritten code is legal **on paper only** —
+> see [`checklists/contest-legal.md`](checklists/contest-legal.md).
+
 Three files in this folder are your workspace:
 
 ```

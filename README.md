@@ -1,5 +1,20 @@
 # NCPC 2026 — Team Reference
 
+> ### ⚠️ Read before Saturday
+>
+> NCPC's rules changed on **2026-09-28**. Prewritten code is **not banned —
+> but it must be on paper**:
+>
+> > *"Physical material has no restrictions: team reference documents, printed
+> > code, textbooks … There is no limit on the amount of such material."*
+> >
+> > *"Any local digital databases of pre-written code are similarly
+> > disallowed."*
+>
+> So print [`print/team-reference.pdf`](print/team-reference.pdf), then run
+> **`make contest-ready`** to strip this repository off the contest laptop.
+> Full procedure: [`checklists/contest-legal.md`](checklists/contest-legal.md).
+
 A **tested** C++/Python template library, a contest workflow, and a
 print-ready team reference, built for the
 [Nordic Collegiate Programming Contest](https://nordic.icpc.io/ncpc2026/)

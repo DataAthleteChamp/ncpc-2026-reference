@@ -24,6 +24,7 @@ CHECKLISTS = [
     "checklists/debug.md",
     "checklists/workflow.md",
     "checklists/contest-day.md",
+    "checklists/contest-legal.md",
 ]
 TEMPLATES = [
     "templates/cpp/solution.cpp",
