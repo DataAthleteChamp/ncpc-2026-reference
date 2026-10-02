@@ -63,11 +63,29 @@ exist here.
 
 ### Polish-language references
 
-| Source | URL | License | Status |
+Full detail, including two domains to avoid, is in
+[`reference/pl/README.md`](reference/pl/README.md).
+
+| Source | URL | Licence | Status |
 |---|---|---|---|
 | **T-Olimpians — Arkusz referencyjny: Struktury danych w C++** | <https://t-olimpians.com> | © T-Olimpians / Team Poland | Not redistributable — personal copy only |
-| Olimpiada Informatyczna | <https://oi.edu.pl> | © OI | Link only |
-| Szkopuł | <https://szkopul.edu.pl> | © | Link only |
+| **`wzorki.md`** (UWr, Algorytmika Praktyczna) | <https://github.com/PatrykFlama/UWr> | No `LICENSE` file → all rights reserved | Link only |
+| **W poszukiwaniu wyzwań 2** | <https://www.mimuw.edu.pl/~idziaszek/algonotes/looking-for-a-challenge-2-pl.pdf> | © Wydział MIM UW, no open licence | Link only; free and legal to download |
+| Olimpiada Informatyczna "niebieskie książeczki" (23 vols) | <https://oi.edu.pl/l/oi_zadania/> | © Komitet Główny OI | Link only |
+| Szkopuł (judge, SIO2) | <https://szkopul.edu.pl> | © | Link only; hosts no tutorials of its own |
+| Polska Wikipedia | <https://pl.wikipedia.org> | **CC BY-SA** | **Redistributable** with attribution |
+
+`templates/cpp/math/number_theory.cpp` gained `extgcd` and `modinvGeneral`
+after reading `wzorki.md`: our original `modinv` used Fermat's little theorem
+and therefore only worked for prime moduli.
+
+**Two domains deliberately not linked anywhere in this repo:**
+
+- `main.edu.pl` — the domain was squatted and now serves an online-casino
+  affiliate page ("Młodzieżowa Akademia Internetowych Kasyn"). It still
+  appears in older Polish CP guides. Its successor is Szkopuł.
+- `olimpiada.edu.pl` — this is *Olimpiada Przedsiębiorczości*, the
+  Entrepreneurship Olympiad. The informatics olympiad is `oi.edu.pl`.
 
 ---
 

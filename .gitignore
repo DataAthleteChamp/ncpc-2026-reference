@@ -7,10 +7,14 @@ books/
 *.djvu
 *.epub
 
-# Third-party reference PDFs are fetched by scripts/fetch-references.sh at need.
-# They are redistributable only under their own licenses, so we link, not vendor.
-reference/**/*.pdf
-!reference/**/.gitkeep
+# Third-party reference material is fetched by scripts/fetch-references.sh at
+# need. It is redistributable only under its own licences — most Polish CP
+# material is all-rights-reserved — so we link, never vendor. Ignore
+# everything fetched into reference/, and allow only the indexes we write.
+reference/en/*
+reference/pl/*
+!reference/en/README.md
+!reference/pl/README.md
 
 # ---------------------------------------------------------------------------
 # Build artifacts
