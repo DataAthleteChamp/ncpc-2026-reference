@@ -1,0 +1,48 @@
+{
+  // Build and run the current file with the Makefile.
+  //   Cmd+Shift+B      -> run (default build task)
+  //   Cmd+Shift+P      -> "Tasks: Run Task" for the rest
+  //
+  // ${fileBasenameNoExtension} means these act on whichever file is focused,
+  // so with a.cpp open, "run" is equivalent to `make run P=a`.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "run",
+      "type": "shell",
+      "command": "make run P=${fileBasenameNoExtension}",
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "test samples",
+      "type": "shell",
+      "command": "make test P=${fileBasenameNoExtension}",
+      "group": { "kind": "test", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "debug build (bounds-checked)",
+      "type": "shell",
+      "command": "make debug P=${fileBasenameNoExtension}",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "stress test",
+      "type": "shell",
+      "command": "make stress P=${fileBasenameNoExtension}",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "pre-submit check",
+      "type": "shell",
+      "command": "make submit P=${fileBasenameNoExtension}",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}

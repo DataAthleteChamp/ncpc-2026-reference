@@ -1,0 +1,19 @@
+{
+  // Point IntelliSense at Homebrew GCC 15, the same compiler Kattis uses.
+  // Without this, VS Code uses Apple clang and reports <bits/stdc++.h> and
+  // __gnu_pbds as missing even though your builds succeed.
+  "C_Cpp.default.compilerPath": "/opt/homebrew/bin/g++-15",
+  "C_Cpp.default.cppStandard": "gnu++23",
+  "C_Cpp.default.intelliSenseMode": "macos-gcc-arm64",
+
+  "files.associations": { "*.in": "plaintext", "*.ans": "plaintext" },
+  "files.trimTrailingWhitespace": false,
+  "editor.formatOnSave": false,
+
+  // Contest scratch files: keep them out of search and the file tree.
+  "search.exclude": {
+    "reference/**": true,
+    "books/**": true,
+    "build/**": true
+  }
+}
