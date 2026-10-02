@@ -152,7 +152,7 @@ strict: $(P).cpp
 
 selftest:
 	@for f in $$(find templates/cpp -name '*.cpp' | sort); do \
-	  guard=$$(grep -o '#ifdef TEST_[A-Z_]*' $$f | head -1 | sed 's/#ifdef //'); \
+	  guard=$$(grep -o '#ifdef TEST_[A-Z0-9_]*' $$f | head -1 | sed 's/#ifdef //'); \
 	  [ -n "$$guard" ] || continue; \
 	  printf '  %-30s ' "$$(basename $$f .cpp)"; \
 	  $(CXX) $(JUDGE) $(WARN) -D$$guard -o /tmp/ncpc_selftest $$f 2>/tmp/ncpc_err \

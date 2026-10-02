@@ -22,17 +22,24 @@ BUILD = ROOT / "build"
 CHECKLISTS = [
     "checklists/complexity-budget.md",
     "checklists/debug.md",
+    "checklists/workflow.md",
     "checklists/contest-day.md",
 ]
 TEMPLATES = [
-    "templates/cpp/template.cpp",
+    "templates/cpp/solution.cpp",
     "templates/cpp/binary_search.cpp",
     "templates/cpp/prefix_sums.cpp",
     "templates/cpp/ds/dsu.cpp",
+    "templates/cpp/ds/fenwick.cpp",
+    "templates/cpp/ds/segment_tree.cpp",
     "templates/cpp/graphs/traversal.cpp",
     "templates/cpp/graphs/dijkstra.cpp",
+    "templates/cpp/graphs/algorithms.cpp",
+    "templates/cpp/dp/classic.cpp",
     "templates/cpp/math/number_theory.cpp",
-    "templates/python/template.py",
+    "templates/cpp/strings/strings.cpp",
+    "templates/cpp/geometry/geometry.cpp",
+    "templates/python/solution.py",
 ]
 
 PREAMBLE = r"""
@@ -64,6 +71,9 @@ PREAMBLE = r"""
   columns=fullflexible, keepspaces=true,
   upquote=true,
 }
+% Load the language drivers up front; listings cannot load them lazily
+% from inside a \begin{lstlisting} that already set style=code.
+\lstloadlanguages{C,C++,Python,bash,make}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -107,6 +117,15 @@ problems}). Wrong submissions on unsolved problems are free.\\[1mm]
 """
 
 LANG = {".cpp": "C++", ".py": "Python", ".h": "C++"}
+
+# Markdown fence labels -> listings language names. Anything unknown falls
+# back to no highlighting rather than failing the build.
+FENCE_LANG = {
+    "cpp": "C++", "c++": "C++", "cc": "C++", "c": "C",
+    "py": "Python", "python": "Python",
+    "sh": "bash", "bash": "bash", "shell": "bash", "console": "bash",
+    "make": "make", "makefile": "make",
+}
 
 
 def tex_escape(s: str) -> str:
@@ -180,13 +199,17 @@ def md_to_tex(text: str) -> str:
 
         if line.startswith("```"):
             close_list()
-            lang = line[3:].strip() or "C++"
+            label = line[3:].strip().lower()
             block = []
             i += 1
             while i < len(lines) and not lines[i].startswith("```"):
                 block.append(lines[i])
                 i += 1
-            out.append(r"\begin{lstlisting}[style=code,language=" + lang + ",numbers=none]")
+            lang = FENCE_LANG.get(label)
+            opts = "style=code,numbers=none"
+            if lang:
+                opts += ",language=" + lang
+            out.append(r"\begin{lstlisting}[" + opts + "]")
             out += block
             out.append(r"\end{lstlisting}")
             i += 1
