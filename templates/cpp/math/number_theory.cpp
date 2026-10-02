@@ -37,6 +37,28 @@ ll modpow(ll base, ll exp, ll m) {
 // Modular inverse, for PRIME m only (Fermat's little theorem).
 ll modinv(ll a, ll m) { return modpow(a, m - 2, m); }
 
+// Extended Euclid: returns g = gcd(a,b) and sets x, y with a*x + b*y = g.
+ll extgcd(ll a, ll b, ll &x, ll &y) {
+    if (!b) {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    ll x1, y1;
+    ll g = extgcd(b, a % b, x1, y1);
+    x = y1;
+    y = x1 - (a / b) * y1;
+    return g;
+}
+
+// General modular inverse — works for ANY m coprime to a, not just prime m.
+// Returns -1 when no inverse exists (gcd(a,m) != 1).
+ll modinvGeneral(ll a, ll m) {
+    ll x, y;
+    if (extgcd(mod(a, m), m, x, y) != 1) return -1;
+    return mod(x, m);
+}
+
 // Smallest prime factor sieve up to n. Also gives primality and factorisation.
 vector<int> sieve(int n) {
     vector<int> spf(n + 1);
@@ -97,6 +119,15 @@ int main() {
     // Large modulus: plain 64-bit multiply would overflow, __int128 does not.
     assert(modpow(123456789, 123456789, 1'000'000'007LL) == 907408795LL);
     assert(modinv(3, 7) == 5 && 3 * 5 % 7 == 1);
+
+    // Extended Euclid: the Bezout identity must actually hold.
+    ll x, y;
+    assert(extgcd(240, 46, x, y) == 2);
+    assert(240 * x + 46 * y == 2);
+    // General inverse works where Fermat's does not: 10 is composite.
+    assert(modinvGeneral(3, 10) == 7 && 3 * 7 % 10 == 1);
+    assert(modinvGeneral(3, 7) == 5);            // agrees with Fermat on primes
+    assert(modinvGeneral(4, 10) == -1);          // gcd(4,10)=2, no inverse exists
 
     auto spf = sieve(50);
     assert(spf[2] == 2 && spf[3] == 3 && spf[4] == 2 && spf[49] == 7);
