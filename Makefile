@@ -168,6 +168,8 @@ selftest:
 print:
 	@python3 scripts/build-cockpit.py
 	@python3 scripts/build-print-pdf.py
+	@# Polish formula sheet, only if make refs has fetched the source.
+	@[ -f reference/pl/wzorki.md ] && python3 scripts/build-pl-formulas.py || true
 	@echo ""
 	@echo "What to print, and how many copies: print/PRINT-ME.md"
 
